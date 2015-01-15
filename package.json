@@ -1,0 +1,23 @@
+{
+  "name": "sfdc-rt.anyfetch.com",
+  "version": "0.1.0",
+  "description": "Salesforce real time provider for Anyfetch",
+  "main": "bin/server",
+  "scripts": {
+    "test": "NODE_ENV=test mocha --recursive -R spec test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hexanom/sfdc-rt.anyfetch.com.git"
+  },
+  "keywords": [
+    "anyfetch",
+    "sfdc"
+  ],
+  "author": "H4302",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hexanom/sfdc-rt.anyfetch.com/issues"
+  },
+  "homepage": "https://github.com/hexanom/sfdc-rt.anyfetch.com"
+}
