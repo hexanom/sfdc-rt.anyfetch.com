@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./bin/server.js",
     "test": "NODE_ENV=test mocha --recursive -R spec test/",
-    "lint": "jshint bin/ lib/ test/ app.js && jscs  bin/ lib/ test/ app.js"
+    "lint": "jshint bin/ lib/ test/ config/ app.js && jscs  bin/ lib/ test/ config/ app.js"
   },
   "repository": {
     "type": "git",
