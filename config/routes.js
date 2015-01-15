@@ -6,9 +6,10 @@
  */
 var lib = require('../lib/');
 var handlers = lib.handlers;
+var middlewares = lib.middlewares;
 
 // Routes client requests to handlers
 module.exports = function(server) {
-  server.get("/documents", handlers.documents.index);
-  server.get("/documents/:identifier", handlers.documents.identifier);
+  server.get("/documents", middlewares.sfdcAuth, handlers.documents.index);
+  server.get("/documents/:identifier", middlewares.sfdcAuth, handlers.documents.identifier);
 };

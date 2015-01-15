@@ -2,7 +2,6 @@
 
 var nforce = require('nforce');
 
-
 /**
  * @file Defines the app settings.
  *
@@ -25,7 +24,6 @@ var org = nforce.createConnection({
   apiVersion: 'v27.0',
   environment: (nodeEnv === 'production') ? 'production' : 'sandbox'
 });
-
 
 // Exports configuration
 module.exports = {
