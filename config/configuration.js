@@ -1,5 +1,8 @@
 'use strict';
 
+var nforce = require('nforce');
+
+
 /**
  * @file Defines the app settings.
  *
@@ -14,10 +17,19 @@ dotenv.load();
 var nodeEnv = process.env.NODE_ENV || "development";
 var port = process.env.PORT || 8000;
 
+// nforce org
+var org = nforce.createConnection({
+  clientId: 'SFDC_CLIENT_ID' || process.env.SFDC_CLIENT_ID,
+  clientSecret: 'SFDC_CLIENT_SECRET' || process.env.SFDC_CLIENT_SECRET,
+  redirectUri: 'http://localhost:' + port + '/oauth/callback' || process.env.SFDC_REDIRECT_URI,
+  apiVersion: 'v27.0',
+  environment: (nodeEnv === 'production') ? 'production' : 'sandbox'
+});
 
 
 // Exports configuration
 module.exports = {
   env: nodeEnv,
-  port: port
+  port: port,
+  sfdcOrg: org
 };
