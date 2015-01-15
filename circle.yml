@@ -1,7 +1,6 @@
 machine:
   node:
     version: 0.10.26
-dependencies:
 test:
   pre:
     - npm run-script lint
