@@ -4,7 +4,8 @@
   "description": "Salesforce real time provider for Anyfetch",
   "main": "bin/server",
   "scripts": {
-    "test": "NODE_ENV=test mocha --recursive -R spec test/"
+    "test": "NODE_ENV=test mocha --recursive -R spec test/",
+    "lint": "jshint bin/ lib/ test/ app.js && jscs  bin/ lib/ test/ app.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/hexanom/sfdc-rt.anyfetch.com/issues"
   },
-  "homepage": "https://github.com/hexanom/sfdc-rt.anyfetch.com"
+  "homepage": "https://github.com/hexanom/sfdc-rt.anyfetch.com",
+  "devDependencies": {
+    "jscs": "^1.10.0",
+    "jshint": "^2.5.11",
+    "mocha": "^2.1.0",
+    "should": "^4.6.0"
+  }
 }
