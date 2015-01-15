@@ -4,7 +4,7 @@ var app = require('../app.js');
 var should = require('should');
 var request = require('supertest');
 
-describe('<Endpoint testing>', function() {
+describe('<Documents endpoint>', function() {
 
   describe('GET /documents', function() {
     it("should fail (provider id unknown)", function(done) {
@@ -12,15 +12,10 @@ describe('<Endpoint testing>', function() {
         .get('/documents')
         .query({ current_provider_id: '123xxx' })
         .set('Accept', 'application/json')
-        .end(function(err, res) {
-          should.exist(err);
-          res.should.have.status(404);
-          done();
-        });
+        .expect(404)
+        .end(done);
     });
-  });
 
-  describe('GET /documents', function() {
     it("strict isn't true or false", function(done) {
       request(app)
         .get('/documents')
