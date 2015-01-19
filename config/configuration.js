@@ -20,7 +20,7 @@ var port = process.env.PORT || 8000;
 var org = nforce.createConnection({
   clientId: 'SFDC_CLIENT_ID' || process.env.SFDC_CLIENT_ID,
   clientSecret: 'SFDC_CLIENT_SECRET' || process.env.SFDC_CLIENT_SECRET,
-  redirectUri: process.env.SFDC_REDIRECT_URI ||'http://localhost:' + port + '/oauth/callback',
+  redirectUri: process.env.SFDC_REDIRECT_URI || 'http://localhost:' + port + '/oauth/callback',
   apiVersion: 'v27.0',
   environment: (nodeEnv === 'production') ? 'production' : 'sandbox'
 });
