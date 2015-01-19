@@ -7,3 +7,5 @@ var SearchResult = function(id) {
 SearchResult.prototype.getId = function() {
   return this.id;
 };
+
+module.exports = SearchResult;

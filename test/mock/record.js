@@ -13,3 +13,5 @@ Record.prototype.get = function(name) {
 Record.prototype.toJSON = function() {
   return this;
 };
+
+module.exports = Record;
