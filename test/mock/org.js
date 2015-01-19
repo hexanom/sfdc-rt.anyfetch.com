@@ -1,16 +1,23 @@
 "use strict";
 
-var Record = require('./record');
-var SearchResult = require('./searchresult');
-
 var mOauth = "mockOauth";
 
 var documents = [
-  new Record("2013-06-26T09:13:46.552Z", "2013-06-26T09:13:46.552Z", "record #1"),
-  new Record("2013-06-26T09:13:46.552Z", "2013-06-26T09:13:46.552Z", "record #2"),
-  new Record("2013-06-26T09:13:46.552Z", "2013-06-26T09:13:46.552Z", "record #3")
+  {Id: 0,
+   attributes: {type: 'User'},
+   Name: "Mr. Report"},
+  {Id: 1,
+   attributes: {type: 'Lead'},
+   Name: "Report Inc."},
+  {Id: 2,
+   attributes: {type: 'Opportunity'},
+   Name: "Report Research"}
 ];
 
+var searchResults = documents.map(function tailToSearch(record) {
+  return {Id: record.Id,
+    attributes: {type: record.attributes.type}};
+});
 
 module.exports = {
   authenticate: function(_, cb) {
@@ -18,17 +25,23 @@ module.exports = {
   },
   getRecord: function(opts, cb) {
     if(opts.oauth === mOauth) {
-      cb(null, documents[parseInt(opts.id)]);
+      var doc = documents[parseInt(opts.id)];
+      if(doc.attributes.type === opts.type) {
+        return cb(null, doc);
+      }
     }
+    cb(new Error("MOCK: wrong parameters on getRecord()"));
   },
   search: function(opts, cb) {
-    cb(null, (function() {
+    if(opts.oauth === mOauth) {
       var search = /FIND {(.+)}/g.exec(opts.search)[1];
       switch(search) {
         case "report":
-          cb(null, [new SearchResult(1), new SearchResult(2), new SearchResult(3)]);
-          break;
+          return cb(null, searchResults);
+        default:
+          return cb(null, []);
       }
-    })());
+    }
+    cb(new Error("MOCK: wrong parameters on search()"));
   }
 };
