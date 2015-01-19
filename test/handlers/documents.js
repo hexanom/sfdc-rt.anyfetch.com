@@ -66,6 +66,7 @@ describe('<Documents endpoint>', function() {
           should.not.exist(err);
           res.body.should.have.length(3);
           res.body[0].should.have.property("identifier", "User/0");
+          res.body[0].data.should.have.property("title", "Mr. Report");
           res.body[1].should.have.property("identifier", "Lead/1");
           res.body[2].should.have.property("identifier", "Opportunity/2");
           done();
