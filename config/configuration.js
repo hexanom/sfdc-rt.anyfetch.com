@@ -29,5 +29,5 @@ var org = nforce.createConnection({
 module.exports = {
   env: nodeEnv,
   port: port,
-  sfdcOrg: org
+  sfdcOrg:(nodeEnv === 'tesr') ? require('../test/mock/org.js') : org
 };
