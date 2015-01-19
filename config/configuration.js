@@ -20,7 +20,7 @@ var port = process.env.PORT || 8000;
 var org = nforce.createConnection({
   clientId: 'SFDC_CLIENT_ID' || process.env.SFDC_CLIENT_ID,
   clientSecret: 'SFDC_CLIENT_SECRET' || process.env.SFDC_CLIENT_SECRET,
-  redirectUri: 'http://localhost:' + port + '/oauth/callback' || process.env.SFDC_REDIRECT_URI,
+  redirectUri: process.env.SFDC_REDIRECT_URI ||'http://localhost:' + port + '/oauth/callback',
   apiVersion: 'v27.0',
   environment: (nodeEnv === 'production') ? 'production' : 'sandbox'
 });
@@ -29,5 +29,5 @@ var org = nforce.createConnection({
 module.exports = {
   env: nodeEnv,
   port: port,
-  sfdcOrg: (nodeEnv === 'tesr') ? require('../test/mock/org.js') : org
+  sfdcOrg: (nodeEnv === 'test') ? require('../test/mock/org.js') : org
 };
