@@ -11,5 +11,5 @@ var middlewares = lib.middlewares;
 // Routes client requests to handlers
 module.exports = function(server) {
   server.get("/documents", middlewares.sfdcAuth, handlers.documents.index);
-  server.get("/documents/:identifier", middlewares.sfdcAuth, handlers.documents.identifier);
+  server.get("/documents/:type/:identifier", middlewares.sfdcAuth, handlers.documents.identifier);
 };

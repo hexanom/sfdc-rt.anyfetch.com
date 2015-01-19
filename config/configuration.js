@@ -21,10 +21,8 @@ var org = nforce.createConnection({
   clientId: process.env.SFDC_CLIENT_ID || 'SFDC_CLIENT_ID',
   clientSecret: process.env.SFDC_CLIENT_SECRET || 'SFDC_CLIENT_SECRET',
   redirectUri: process.env.SFDC_REDIRECT_URI || 'http://localhost:' + port + '/oauth/callback',
-  apiVersion: 'v27.0',
-  environment: (nodeEnv === 'production') ? 'production' : 'sandbox'
+  apiVersion: 'v27.0'
 });
-console.log(org);
 
 // Exports configuration
 module.exports = {
