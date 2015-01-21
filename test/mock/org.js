@@ -24,7 +24,7 @@ module.exports = {
     cb(null, mOauth);
   },
   getRecord: function(opts, cb) {
-    if(opts.oauth === mOauth) {
+    if(opts.oauth === mOauth && opts.raw === true) {
       var doc = documents[parseInt(opts.id)];
       if(doc.attributes.type === opts.type) {
         return cb(null, doc);
