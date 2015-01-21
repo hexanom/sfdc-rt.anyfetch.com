@@ -131,4 +131,22 @@ describe('<Documents endpoint>', function() {
     });
   });
 
+  describe('GET /documents/:type/:id', function() {
+    it('should return a matching doc', function(done) {
+      request(app)
+        .get('/documents/User/0')
+        .set('Accept', 'application/json')
+        .expect(/User\/0/)
+        .expect(/Mr\. Report/)
+        .end(done);
+    });
+
+    it('should error when not matching', function(done) {
+      request(app)
+        .get('/documents/User/1')
+        .set('Accept', 'application/json')
+        .expect(404)
+        .end(done);
+    });
+  });
 });
