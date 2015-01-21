@@ -37,7 +37,10 @@ module.exports = {
       var search = /FIND {(.+)}/g.exec(opts.search)[1];
       switch(search) {
         case "report":
+        case "mr report":
           return cb(null, searchResults);
+        case "mr AND report":
+          return cb(null, [searchResults[0]]);
         default:
           return cb(null, []);
       }
