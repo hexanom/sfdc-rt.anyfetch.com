@@ -46,7 +46,7 @@ describe('<Documents endpoint>', function() {
     it("should not find anything", function(done) {
       request(app)
         .get('/documents')
-        .query({current_provider_id: '123', search: 'waldo'})
+        .query({current_provider_id: '123', search: 'waldo', strict: "false"})
         .set('Accept', 'application/json')
         .expect(200)
         .end(function(err, res) {
@@ -56,10 +56,10 @@ describe('<Documents endpoint>', function() {
         });
     });
 
-    it("should find some documents", function(done) {
+    it("should find some documents (enforce non-strict)", function(done) {
       request(app)
         .get('/documents')
-        .query({current_provider_id: '123', search: 'mr report'})
+        .query({current_provider_id: '123', search: 'mr report', strict: "false"})
         .set('Accept', 'application/json')
         .expect(200)
         .end(function(err, res) {
@@ -73,10 +73,10 @@ describe('<Documents endpoint>', function() {
         });
     });
 
-    it.skip("should find less documents (strict)", function(done) {
+    it("should find less documents (strict by default)", function(done) {
       request(app)
         .get('/documents')
-        .query({current_provider_id: '123', search: 'mr report', strict: 'true'})
+        .query({current_provider_id: '123', search: 'mr report'})
         .set('Accept', 'application/json')
         .expect(200)
         .end(function(err, res) {
