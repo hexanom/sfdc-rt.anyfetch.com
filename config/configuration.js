@@ -1,6 +1,7 @@
 'use strict';
 
 var nforce = require('nforce');
+var redis = require('redis');
 
 /**
  * @file Defines the app settings.
@@ -15,6 +16,9 @@ dotenv.load();
 // node_env can either be "development" or "production"
 var nodeEnv = process.env.NODE_ENV || "development";
 var port = process.env.PORT || 8000;
+var redisPort = process.env.REDIS_PORT || 6379;
+var redisHost = process.env.REDIS_HOST || '127.0.0.1';
+var redisAuth = process.env.REDIS_AUTH || null;
 
 // nforce org
 var org = nforce.createConnection({
@@ -24,9 +28,14 @@ var org = nforce.createConnection({
   apiVersion: 'v27.0'
 });
 
+var rClient = redis.createClient(redisPort, redisHost, {
+    auth_pass: redisAuth
+});
+
 // Exports configuration
 module.exports = {
   env: nodeEnv,
   port: port,
-  sfdcOrg: (nodeEnv === 'test') ? require('../test/mock/org.js') : org
+  sfdcOrg: (nodeEnv === 'test') ? require('../test/mock/org.js') : org,
+  redisCli: rClient
 };
