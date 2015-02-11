@@ -25,7 +25,7 @@ require("./config/routes.js")(server, handlers);
 server.on('uncaughtException', function(req, res, route, err) {
   if(!res.headersSent) {
     if(config.env !== "production") {
-      res.send(new restify.InternalServerError(err, err.message || 'unexpected error'));
+      res.send(new restify.InternalServerError(err, err.message + err.stack || 'unexpected error'));
     }
     else {
       res.send(new restify.InternalServerError("An unexpected error occurred :("));
